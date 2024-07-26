@@ -1,0 +1,1 @@
+﻿global using Ecommerce.Infrastructure.CrossCutting.Extensions.Ioc;
