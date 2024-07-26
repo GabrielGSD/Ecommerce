@@ -3,6 +3,24 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+bin/**
+obj/**
+*.vshost.exe
+*.pdb
+*.user
+*.suo
+
+packages/**
+
+*.db
+*.mdf
+*.sdf
+
+*.log
+*.tmp
+
+cache/**
+
 # User-specific files
 *.rsuser
 *.suo
