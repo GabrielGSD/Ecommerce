@@ -7,7 +7,7 @@
 		public string Email { get; set; }
 		public DateTime BirthDate { get; set; }
 		public string Cpf { get; set; }
-		public bool Active { get; set; }
+		public bool IsActive { get; set; }
 		public Address Address { get; set; }
 	}
 }
