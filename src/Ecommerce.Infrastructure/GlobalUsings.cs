@@ -12,3 +12,5 @@ global using Ecommerce.Domain.Services;
 global using Ecommerce.Application.Dtos;
 global using Ecommerce.Application.Mappers;
 global using Ecommerce.Application.Mappers.Interfaces;
+global using Ecommerce.Application;
+global using Ecommerce.Application.Interfaces;

@@ -37,5 +37,11 @@
 			servicesCollection.TryAddScoped<IMapper<CustomerDto, Customer>, CustomerMapper>();
 			return servicesCollection;
 		}
+		
+		public static IServiceCollection AddApplicationServices(this IServiceCollection servicesCollection)
+		{
+			servicesCollection.TryAddScoped<ICustomerApplicationService, CustomerApplicationService>();
+			return servicesCollection;
+		}
 	}
 }
