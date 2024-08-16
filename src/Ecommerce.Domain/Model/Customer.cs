@@ -9,5 +9,6 @@
 		public string Cpf { get; set; }
 		public bool IsActive { get; set; }
 		public Address Address { get; set; }
+		public DateTime CreatedDate { get; set; }
 	}
 }
