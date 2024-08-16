@@ -24,5 +24,11 @@
 			servicesCollection.TryAddSingleton<ICustomerRepository, CustomerRepository>();
 			return servicesCollection;
 		}
+		
+		public static IServiceCollection AddDomainServices(this IServiceCollection servicesCollection)
+		{
+			servicesCollection.TryAddScoped<ICustomerService, CustomerService>();
+			return servicesCollection;
+		}
 	}
 }

@@ -7,4 +7,5 @@ public interface ICustomerRepository
     void Delete(string id);
     IEnumerable<Customer> Get();
     Customer Get(string id);
+    Customer GetByEmail(string email);
 }

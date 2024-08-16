@@ -59,4 +59,16 @@ public class CustomerRepository : ICustomerRepository
         using IDocumentSession documentSession = _documentStore.OpenSession();
         return documentSession.Load<Customer>(id);
     }
+
+    public Customer GetByEmail(string email)
+    {
+        using IDocumentSession documentSession = _documentStore.OpenSession();
+        var customerExist = documentSession.Query<Customer>()
+            .FirstOrDefault(c => c.Email == email);
+        if (customerExist == null)
+        {
+            throw new Exception("Customer not found");
+        }
+        return customerExist;
+    }
 }
