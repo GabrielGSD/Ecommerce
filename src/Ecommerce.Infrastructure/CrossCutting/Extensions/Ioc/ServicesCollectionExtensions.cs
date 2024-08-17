@@ -2,10 +2,15 @@
 {
 	public static class ServicesCollectionExtensions
 	{
+		
 		public static IServiceCollection AddRavenDb(this IServiceCollection servicesCollection)
 		{
 			servicesCollection.TryAddSingleton<IDocumentStore>(ctx => {
 				var ravenDbSettings = ctx.GetRequiredService<IOptions<RavenDbSettings>>().Value;
+				if (string.IsNullOrEmpty(ravenDbSettings.Url))
+				{
+					throw new ArgumentNullException("RavenDbSettings.Url or RavenDbSettings.Urls cannot be null or empty.");
+				}
 				var store = new DocumentStore
 				{
 					Urls = new[] { ravenDbSettings.Url },

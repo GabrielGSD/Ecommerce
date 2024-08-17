@@ -1,7 +1,9 @@
+using Ecommerce.Infrastructure.CrossCutting.Options;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.Configure<RavenDbSettings>(builder.Configuration.GetSection("RavenDbSettings"));
 builder.Services.AddControllers();
 builder.Services.AddRavenDb();
 builder.Services.AddRepositories();

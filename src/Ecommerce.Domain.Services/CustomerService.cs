@@ -12,13 +12,15 @@ public class CustomerService : ICustomerService
     public void SaveCustomer(Customer customer)
     {
         ValidateEmail(customer.Email);
+        customer.IsActive = true;
+        customer.CreatedDate = DateTime.Now;
+        customer.Address.IsActive = true;
         _customerRepository.Insert(customer);
     }
     
     private void ValidateEmail(string email)
     {
-        if (!isEmailValid(email))
-            throw new DuplicateEmailException(email);
+        isEmailValid(email);
         
         var existingCustomer = _customerRepository.GetByEmail(email);
         if (existingCustomer != null)
@@ -28,7 +30,7 @@ public class CustomerService : ICustomerService
     private bool isEmailValid(string email)
     {
         if (string.IsNullOrEmpty(email))
-            return false;
+            throw new ArgumentException("Email cannot be null or empty.");
         try
         {
             var emailAddress = new MailAddress(email);
@@ -38,7 +40,7 @@ public class CustomerService : ICustomerService
         }
         catch (Exception e)
         {
-            return false;
+            throw new ArgumentException(e.Message);
         }
     }
     
