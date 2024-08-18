@@ -1,3 +1,5 @@
+using Raven.Client.Exceptions;
+
 namespace Ecommerce.Infrastructure.Data.Repositories;
 
 public class CustomerRepository : ICustomerRepository
@@ -42,7 +44,7 @@ public class CustomerRepository : ICustomerRepository
         var customerExist = documentSession.Load<Customer>(id);
         if (customerExist == null)
         {
-            throw new Exception("Customer not found");
+            throw new ArgumentException("Customer not found");
         }
         documentSession.Delete(customerExist);
         documentSession.SaveChanges();
@@ -57,7 +59,12 @@ public class CustomerRepository : ICustomerRepository
     public Customer Get(string id)
     {
         using IDocumentSession documentSession = _documentStore.OpenSession();
-        return documentSession.Load<Customer>(id);
+        var customer = documentSession.Load<Customer>(id);
+        if (customer == null)
+        {
+            throw new ArgumentException("Customer not found");
+        }
+        return customer;
     }
 
     public Customer? GetByEmail(string email)
