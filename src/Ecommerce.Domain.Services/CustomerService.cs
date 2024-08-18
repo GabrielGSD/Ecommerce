@@ -17,7 +17,27 @@ public class CustomerService : ICustomerService
         customer.Address.IsActive = true;
         _customerRepository.Insert(customer);
     }
-    
+
+    public void UpdateCustomer(Customer customer)
+    {
+        _customerRepository.Update(customer);
+    }
+
+    public void DeleteCustomer(string id)
+    {
+        _customerRepository.Delete(id);
+    }
+
+    public IEnumerable<Customer> GetCustomers()
+    {
+        return _customerRepository.Get();
+    }
+
+    public Customer GetCustomerById(string id)
+    {
+        return _customerRepository.Get(id);
+    }
+
     private void ValidateEmail(string email)
     {
         isEmailValid(email);
