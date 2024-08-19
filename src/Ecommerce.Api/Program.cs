@@ -1,3 +1,4 @@
+using AspNetCore.Scalar;
 using Ecommerce.Infrastructure.CrossCutting.Options;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +23,12 @@ if (app.Environment.IsDevelopment())
 {
 	app.UseSwagger();
 	app.UseSwaggerUI();
+
+	app.UseScalar(options =>
+	{
+		options.UseTheme(Theme.Default);
+		options.RoutePrefix = "docs";
+	});
 }
 
 app.UseHttpsRedirection();
